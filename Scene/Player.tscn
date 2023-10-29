@@ -48,6 +48,7 @@ _data = {
 position = Vector2(38, 207)
 up_direction = Vector2(0.140049, -0.990145)
 script = ExtResource("1_fyx5u")
+speed = 200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-4.5, 24)
