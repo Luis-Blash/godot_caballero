@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cspa4tk5vs30v"]
+[gd_scene load_steps=5 format=3 uid="uid://cspa4tk5vs30v"]
 
 [ext_resource type="Texture2D" uid="uid://vyenx2t537hn" path="res://Assest/backgrounds/background_layer_1.png" id="1_kh14i"]
 [ext_resource type="Texture2D" uid="uid://b6fj8rqhkauoj" path="res://Assest/backgrounds/background_layer_2.png" id="2_xdg4m"]
 [ext_resource type="Texture2D" uid="uid://o3fhwdjrcldp" path="res://Assest/backgrounds/background_layer_3.png" id="3_b2dvf"]
+[ext_resource type="TileSet" uid="uid://b2gslm183prr0" path="res://Assest/TilesetThree.tres" id="4_xbun1"]
 
 [node name="Level1" type="Node2D"]
 
@@ -25,3 +26,16 @@ centered = false
 [node name="Sprite2D" type="Sprite2D" parent="Background/Layer03"]
 texture = ExtResource("3_b2dvf")
 centered = false
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("4_xbun1")
+format = 2
+layer_0/name = "Layer0"
+layer_0/tile_data = PackedInt32Array(655360, 524289, 0, 720896, 524289, 1, 655361, 589825, 0, 720897, 589825, 1, 655362, 655361, 0, 720898, 655361, 1, 655363, 720897, 0, 720899, 720897, 1, 655364, 786433, 0, 720900, 786433, 1, 655365, 524289, 0, 720901, 524289, 1, 655366, 589825, 0, 720902, 589825, 1, 655367, 655361, 0, 720903, 655361, 1, 655368, 720897, 0, 720904, 720897, 1, 655369, 786433, 0, 720905, 786433, 1, 655370, 524289, 0, 720906, 524289, 1, 655371, 589825, 0, 720907, 589825, 1, 655372, 655361, 0, 720908, 655361, 1, 655373, 720897, 0, 720909, 720897, 1, 655374, 786433, 0, 720910, 786433, 1, 655375, 524289, 0, 720911, 524289, 1, 655376, 589825, 0, 720912, 589825, 1, 655377, 655361, 0, 720913, 655361, 1, 655378, 720897, 0, 720914, 720897, 1, 655379, 786433, 0, 720915, 786433, 1)
+layer_1/name = "Layer1"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array()
