@@ -13,7 +13,12 @@ func _ready():
 func _process(_delta):
 	motion_ctrl()
 	pass
-	
+
+func _physics_process(delta):
+		
+	pass
+
+
 func motion_ctrl() -> void: 
 	velocity.x = Global.get_axis().x * speed
 	#velocity.y = Global.get_axis().y * speed

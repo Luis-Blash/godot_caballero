@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cspa4tk5vs30v"]
+
+[ext_resource type="Texture2D" uid="uid://vyenx2t537hn" path="res://Assest/backgrounds/background_layer_1.png" id="1_kh14i"]
+[ext_resource type="Texture2D" uid="uid://b6fj8rqhkauoj" path="res://Assest/backgrounds/background_layer_2.png" id="2_xdg4m"]
+[ext_resource type="Texture2D" uid="uid://o3fhwdjrcldp" path="res://Assest/backgrounds/background_layer_3.png" id="3_b2dvf"]
+
+[node name="Level1" type="Node2D"]
+
+[node name="Background" type="ParallaxBackground" parent="."]
+
+[node name="Layer01" type="ParallaxBackground" parent="Background"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Layer01"]
+texture = ExtResource("1_kh14i")
+centered = false
+
+[node name="Layer02" type="ParallaxBackground" parent="Background"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Layer02"]
+texture = ExtResource("2_xdg4m")
+centered = false
+
+[node name="Layer03" type="ParallaxBackground" parent="Background"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Layer03"]
+texture = ExtResource("3_b2dvf")
+centered = false

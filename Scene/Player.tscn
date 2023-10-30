@@ -1,12 +1,12 @@
 [gd_scene load_steps=7 format=3 uid="uid://edjejs6q6t8w"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_fyx5u"]
-[ext_resource type="Texture2D" uid="uid://dqso0k2h4p0i1" path="res://Assest/_Idle.png" id="2_rlirp"]
+[ext_resource type="Texture2D" uid="uid://dvdyqrgjtwfm2" path="res://Assest/Player/_Idle.png" id="2_41g0y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ltax"]
 size = Vector2(17, 28)
 
-[sub_resource type="Animation" id="Animation_7ieh5"]
+[sub_resource type="Animation" id="Animation_ctg0l"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -18,12 +18,11 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_pbq5k"]
+[sub_resource type="Animation" id="Animation_01qh7"]
 resource_name = "idle_player"
-length = 0.9
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -32,20 +31,20 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 9]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5k3uo"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bekbg"]
 _data = {
-"RESET": SubResource("Animation_7ieh5"),
-"idle_player": SubResource("Animation_pbq5k")
+"RESET": SubResource("Animation_ctg0l"),
+"idle_player": SubResource("Animation_01qh7")
 }
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(38, 207)
+position = Vector2(21, 4)
 up_direction = Vector2(0.140049, -0.990145)
 script = ExtResource("1_fyx5u")
 speed = 200.0
@@ -55,11 +54,10 @@ position = Vector2(-4.5, 24)
 shape = SubResource("RectangleShape2D_7ltax")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_rlirp")
+texture = ExtResource("2_41g0y")
 hframes = 10
-frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_5k3uo")
+"": SubResource("AnimationLibrary_bekbg")
 }
