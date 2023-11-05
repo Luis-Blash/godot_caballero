@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cspa4tk5vs30v"]
+[gd_scene load_steps=6 format=3 uid="uid://cspa4tk5vs30v"]
 
 [ext_resource type="Texture2D" uid="uid://vyenx2t537hn" path="res://Assest/backgrounds/background_layer_1.png" id="1_kh14i"]
 [ext_resource type="Texture2D" uid="uid://b6fj8rqhkauoj" path="res://Assest/backgrounds/background_layer_2.png" id="2_xdg4m"]
 [ext_resource type="Texture2D" uid="uid://o3fhwdjrcldp" path="res://Assest/backgrounds/background_layer_3.png" id="3_b2dvf"]
 [ext_resource type="TileSet" uid="uid://b2gslm183prr0" path="res://Assest/TilesetThree.tres" id="4_xbun1"]
+[ext_resource type="PackedScene" uid="uid://edjejs6q6t8w" path="res://Scene/Player.tscn" id="5_0cht6"]
 
 [node name="Level1" type="Node2D"]
 
@@ -39,3 +40,8 @@ layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array()
+
+[node name="Player" parent="." instance=ExtResource("5_0cht6")]
+position = Vector2(90, -18)
+up_direction = Vector2(0.140049, -0.990145)
+mass = 2.0

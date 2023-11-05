@@ -2,7 +2,8 @@ extends CharacterBody2D
  
 @onready var _animation_player = $AnimationPlayer
 
-@export var speed : float
+@export var speed : float = 200
+@export var mass : float = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,15 +12,15 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(_delta):
-	motion_ctrl()
 	pass
 
 func _physics_process(delta):
-		
-	pass
+	gravity_character()
+	motion_ctrl()
+	move_and_slide()
 
+func gravity_character():
+	velocity.y = Global.get_gravity_character(velocity.y, mass)
 
 func motion_ctrl() -> void: 
 	velocity.x = Global.get_axis().x * speed
-	#velocity.y = Global.get_axis().y * speed
-	move_and_slide()

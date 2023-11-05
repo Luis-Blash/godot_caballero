@@ -3,8 +3,9 @@
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_fyx5u"]
 [ext_resource type="Texture2D" uid="uid://dvdyqrgjtwfm2" path="res://Assest/Player/_Idle.png" id="2_41g0y"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ltax"]
-size = Vector2(17, 28)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sw75b"]
+radius = 11.0
+height = 34.0
 
 [sub_resource type="Animation" id="Animation_ctg0l"]
 length = 0.001
@@ -44,14 +45,14 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(21, 4)
+position = Vector2(61, 80)
 up_direction = Vector2(0.140049, -0.990145)
 script = ExtResource("1_fyx5u")
-speed = 200.0
+mass = 6.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4.5, 24)
-shape = SubResource("RectangleShape2D_7ltax")
+position = Vector2(-6, 24)
+shape = SubResource("CapsuleShape2D_sw75b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_41g0y")
