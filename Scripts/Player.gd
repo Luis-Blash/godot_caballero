@@ -8,19 +8,28 @@ extends CharacterBody2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("Player")
-	_animation_player.play("idle_player")
 	pass # Replace with function body.
 
 func _process(_delta):
+	
 	pass
 
 func _physics_process(delta):
 	gravity_character()
 	motion_ctrl()
 	move_and_slide()
+	select_animation()
 
 func gravity_character():
 	velocity.y = Global.get_gravity_character(velocity.y, mass)
 
 func motion_ctrl() -> void: 
 	velocity.x = Global.get_axis().x * speed
+	
+func select_animation():
+	if(Input.is_action_pressed("ui_left") || Input.is_action_pressed("ui_right")):
+		_animation_player.play("run_player")
+	else :
+		_animation_player.play("idle_player")
+	#_animation_player.play("idle_player")
+	pass

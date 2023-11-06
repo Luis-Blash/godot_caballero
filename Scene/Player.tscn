@@ -1,47 +1,51 @@
-[gd_scene load_steps=7 format=3 uid="uid://edjejs6q6t8w"]
+[gd_scene load_steps=8 format=3 uid="uid://edjejs6q6t8w"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_fyx5u"]
-[ext_resource type="Texture2D" uid="uid://dvdyqrgjtwfm2" path="res://Assest/Player/_Idle.png" id="2_41g0y"]
+[ext_resource type="Texture2D" uid="uid://beet5fpehq11f" path="res://Assest/Player/Caballero_sheet.png" id="2_lg1kv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sw75b"]
 radius = 11.0
 height = 34.0
 
-[sub_resource type="Animation" id="Animation_ctg0l"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_01qh7"]
+[sub_resource type="Animation" id="Animation_a2n3w"]
 resource_name = "idle_player"
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath(".:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0), Vector2i(6, 0), Vector2i(7, 0), Vector2i(8, 0), Vector2i(9, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_bekbg"]
+[sub_resource type="Animation" id="Animation_yq8b8"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_ju6oh"]
+resource_name = "run_player"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2), Vector2i(6, 2), Vector2i(7, 2), Vector2i(8, 2), Vector2i(9, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wkk4j"]
 _data = {
-"RESET": SubResource("Animation_ctg0l"),
-"idle_player": SubResource("Animation_01qh7")
+"RESET": SubResource("Animation_yq8b8"),
+"idle_player": SubResource("Animation_a2n3w"),
+"run_player": SubResource("Animation_ju6oh")
 }
 
 [node name="Player" type="CharacterBody2D"]
@@ -54,11 +58,13 @@ mass = 6.0
 position = Vector2(-6, 24)
 shape = SubResource("CapsuleShape2D_sw75b")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_41g0y")
-hframes = 10
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
 libraries = {
-"": SubResource("AnimationLibrary_bekbg")
+"": SubResource("AnimationLibrary_wkk4j")
 }
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_lg1kv")
+hframes = 10
+vframes = 5

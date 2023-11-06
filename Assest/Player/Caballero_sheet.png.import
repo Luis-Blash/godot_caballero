@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1bxss8m1ubj6"
-path="res://.godot/imported/_Jump.png-a5df01d9812bf73c362eeb5adfff80ce.ctex"
+uid="uid://beet5fpehq11f"
+path="res://.godot/imported/Caballero_sheet.png-4312c4c485a72398678910ec24a2b88f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assest/Player/_Jump.png"
-dest_files=["res://.godot/imported/_Jump.png-a5df01d9812bf73c362eeb5adfff80ce.ctex"]
+source_file="res://Assest/Player/Caballero_sheet.png"
+dest_files=["res://.godot/imported/Caballero_sheet.png-4312c4c485a72398678910ec24a2b88f.ctex"]
 
 [params]
 
