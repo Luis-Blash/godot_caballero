@@ -1,6 +1,7 @@
 extends CharacterBody2D
  
 @onready var _animation_player = $AnimationPlayer
+@onready var _sprite_player = $Sprite2D
 
 @export var speed : float = 200
 @export var mass : float = 2
@@ -28,7 +29,12 @@ func motion_ctrl() -> void:
 	
 func select_animation():
 	if(Input.is_action_pressed("ui_left") || Input.is_action_pressed("ui_right")):
-		_animation_player.play("run_player")
+		if(Input.is_action_pressed("ui_left")):
+			_sprite_player.flip_h = true
+			_animation_player.play("run_player")
+		else: 
+			_sprite_player.flip_h = false
+			_animation_player.play("run_player")
 	else :
 		_animation_player.play("idle_player")
 	#_animation_player.play("idle_player")

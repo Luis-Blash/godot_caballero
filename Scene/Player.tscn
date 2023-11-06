@@ -28,6 +28,7 @@ length = 0.001
 
 [sub_resource type="Animation" id="Animation_ju6oh"]
 resource_name = "run_player"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -68,3 +69,4 @@ libraries = {
 texture = ExtResource("2_lg1kv")
 hframes = 10
 vframes = 5
+frame = 27
