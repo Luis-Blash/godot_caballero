@@ -7,6 +7,9 @@
 radius = 11.0
 height = 34.0
 
+[sub_resource type="Animation" id="Animation_yq8b8"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_a2n3w"]
 resource_name = "idle_player"
 loop_mode = 1
@@ -22,9 +25,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0), Vector2i(6, 0), Vector2i(7, 0), Vector2i(8, 0), Vector2i(9, 0)]
 }
-
-[sub_resource type="Animation" id="Animation_yq8b8"]
-length = 0.001
 
 [sub_resource type="Animation" id="Animation_ju6oh"]
 resource_name = "run_player"
