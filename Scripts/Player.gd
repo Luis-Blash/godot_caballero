@@ -2,6 +2,7 @@ extends CharacterBody2D
  
 @onready var _animation_player = $AnimationPlayer
 @onready var _sprite_player = $Sprite2D
+@onready var _colisionBody = $CollisionShape2D
 
 @export var speed : float = 200
 @export var mass : float = 2
@@ -31,9 +32,11 @@ func select_animation():
 	if(Input.is_action_pressed("ui_left") || Input.is_action_pressed("ui_right")):
 		if(Input.is_action_pressed("ui_left")):
 			_sprite_player.flip_h = true
+			_colisionBody.transform[2] = Vector2(5,22)
 			_animation_player.play("run_player")
 		else: 
 			_sprite_player.flip_h = false
+			_colisionBody.transform[2] = Vector2(-5,22)
 			_animation_player.play("run_player")
 	else :
 		_animation_player.play("idle_player")
