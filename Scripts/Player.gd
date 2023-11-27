@@ -49,7 +49,12 @@ func keys_press():
 
 
 func motion_ctrl() -> void: 
-	velocity.x = Global.get_axis().x * speed
+	
+	if get_collision_floor():
+		velocity = Vector2.ZERO
+	
+	if !get_collision_wall():
+		velocity.x = Global.get_axis().x * speed
 	
 	# si esta tocando el suelo puedes saltar
 	if get_collision_floor() and jump_key:
@@ -62,12 +67,12 @@ func motion_ctrl() -> void:
 		is_jumping = false
 	# si no salta le afecta la gravedad
 	else:
-		velocity.y = Global.get_gravity_character(velocity.y, mass)
+		velocity.y += Global.get_gravity_character(1, mass)
 		
 	
 func select_animation():	
 	
-	if (left_key || right_key && get_collision_floor()):
+	if ((left_key || right_key) && get_collision_floor()):
 		_animation_player.play("run_player")
 	else:
 		_animation_player.play("idle_player")
@@ -85,6 +90,7 @@ func select_animation():
 		_wallRaycast.transform[2] = Vector2(-5,22)
 		_wallRaycast.target_position = Vector2(10,0)
 		_floorRaycast.transform[2] = Vector2(-5,22)
+		
 
 func get_collision_wall() -> bool:
 	return _wallRaycast.is_colliding()
