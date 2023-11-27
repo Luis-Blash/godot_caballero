@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var _sprite_player = $Sprite2D
 @onready var _colisionBody = $CollisionShape2D
 @onready var _wallRaycast = $WallRayCast
+@onready var _floorRaycast = $FloorRayCast
 
 @export var speed : float = 200
 @export var mass : float = 3
@@ -51,7 +52,7 @@ func motion_ctrl() -> void:
 	velocity.x = Global.get_axis().x * speed
 	
 	# si esta tocando el suelo puedes saltar
-	if is_on_floor() and jump_key:
+	if get_collision_floor() and jump_key:
 		if !get_collision_wall():
 			velocity.y = -jump_speed
 			is_jumping = true
@@ -66,7 +67,7 @@ func motion_ctrl() -> void:
 	
 func select_animation():	
 	
-	if (left_key || right_key):
+	if (left_key || right_key && get_collision_floor()):
 		_animation_player.play("run_player")
 	else:
 		_animation_player.play("idle_player")
@@ -74,10 +75,19 @@ func select_animation():
 	if left_key:
 		_sprite_player.flip_h = true
 		_colisionBody.transform[2] = Vector2(5,22)
+		_wallRaycast.transform[2] = Vector2(5,22)
+		_wallRaycast.target_position = Vector2(-10,0)
+		_floorRaycast.transform[2] = Vector2(5,22)
 	
 	if right_key:
 		_sprite_player.flip_h = false
 		_colisionBody.transform[2] = Vector2(-5,22)
+		_wallRaycast.transform[2] = Vector2(-5,22)
+		_wallRaycast.target_position = Vector2(10,0)
+		_floorRaycast.transform[2] = Vector2(-5,22)
 
 func get_collision_wall() -> bool:
 	return _wallRaycast.is_colliding()
+	
+func get_collision_floor() -> bool:
+	return _floorRaycast.is_colliding()

@@ -46,7 +46,7 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q2aqg"]
-radius = 8.5
+radius = 7.0
 height = 36.0
 
 [node name="Player" type="CharacterBody2D"]
@@ -73,4 +73,8 @@ shape = SubResource("CapsuleShape2D_q2aqg")
 
 [node name="WallRayCast" type="RayCast2D" parent="."]
 position = Vector2(-5, 22)
-target_position = Vector2(10, 0)
+target_position = Vector2(-10, 0)
+
+[node name="FloorRayCast" type="RayCast2D" parent="."]
+position = Vector2(-5, 22)
+target_position = Vector2(0, 20)
