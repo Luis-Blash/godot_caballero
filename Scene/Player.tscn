@@ -70,3 +70,7 @@ frame = 27
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5, 22)
 shape = SubResource("CapsuleShape2D_q2aqg")
+
+[node name="WallRayCast" type="RayCast2D" parent="."]
+position = Vector2(-5, 22)
+target_position = Vector2(10, 0)
