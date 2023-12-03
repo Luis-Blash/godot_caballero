@@ -71,9 +71,11 @@ func motion_ctrl() -> void:
 		
 	
 func select_animation():	
-	
+
 	if ((left_key || right_key) && get_collision_floor()):
 		_animation_player.play("run_player")
+	elif !get_collision_floor():
+		_animation_player.play("Jump_player")
 	else:
 		_animation_player.play("idle_player")
 		
