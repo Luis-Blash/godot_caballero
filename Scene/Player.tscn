@@ -1,10 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://edjejs6q6t8w"]
+[gd_scene load_steps=11 format=3 uid="uid://edjejs6q6t8w"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_fyx5u"]
 [ext_resource type="Texture2D" uid="uid://beet5fpehq11f" path="res://Assest/Player/Caballero_sheet.png" id="2_lg1kv"]
 
 [sub_resource type="Animation" id="Animation_yq8b8"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(2, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_a2n3w"]
 resource_name = "idle_player"
@@ -55,10 +67,44 @@ tracks/0/keys = {
 "values": [Vector2i(1, 4)]
 }
 
+[sub_resource type="Animation" id="Animation_ah1la"]
+resource_name = "attack_one"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ypqg5"]
+resource_name = "attack_two"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(5, 1), Vector2i(6, 1), Vector2i(7, 1), Vector2i(8, 1), Vector2i(9, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wkk4j"]
 _data = {
 "Jump_player": SubResource("Animation_tp3dm"),
 "RESET": SubResource("Animation_yq8b8"),
+"attack_one": SubResource("Animation_ah1la"),
+"attack_two": SubResource("Animation_ypqg5"),
 "idle_player": SubResource("Animation_a2n3w"),
 "run_player": SubResource("Animation_ju6oh")
 }
@@ -83,7 +129,7 @@ libraries = {
 texture = ExtResource("2_lg1kv")
 hframes = 10
 vframes = 5
-frame = 41
+frame = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5, 22)
@@ -101,3 +147,6 @@ target_position = Vector2(0, 20)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
