@@ -96,3 +96,8 @@ target_position = Vector2(6, 0)
 [node name="FloorRayCast" type="RayCast2D" parent="."]
 position = Vector2(-5, 22)
 target_position = Vector2(0, 20)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
