@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://fe864gx3kjmn"]
+
+[ext_resource type="Script" path="res://Scripts/Gui.gd" id="1_wy538"]
+
+[node name="Gui" type="CanvasLayer"]
+script = ExtResource("1_wy538")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 2
+offset_right = 53.0
+offset_bottom = 40.0
+
+[node name="L_vida" type="Label" parent="Control/HBoxContainer"]
+layout_mode = 2
+text = "Vida:"
+
+[node name="P_vida" type="Label" parent="Control/HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[connection signal="update_life_status" from="." to="." method="_on_update_life_status"]

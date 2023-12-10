@@ -44,6 +44,11 @@ layer_1/tile_data = PackedInt32Array()
 [node name="Player" parent="." instance=ExtResource("5_0cht6")]
 position = Vector2(61, 83)
 up_direction = Vector2(0.140049, -0.990145)
+speed = 200.0
+jump_speed = 400.0
+life = 100.0
 
 [node name="EnemySkeleton" parent="." instance=ExtResource("6_tpepk")]
 position = Vector2(148, 89)
+
+[connection signal="update_life_status" from="Gui" to="Player" method="_on_gui_update_life_status"]

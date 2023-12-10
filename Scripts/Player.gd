@@ -1,5 +1,5 @@
 extends CharacterBody2D
- 
+
 @onready var _animation_player = $AnimationPlayer
 @onready var _sprite_player = $Sprite2D
 @onready var _colisionBody = $CollisionShape2D
@@ -20,9 +20,13 @@ var select_animation_attack = 0
 
 @export var life:float = 100 
 
+# instance another
+@onready var gui = $"../Gui"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("Player")
+	gui.emit_signal("update_life_status", life)
 	pass # Replace with function body.
 
 func _process(_delta):
@@ -130,6 +134,7 @@ func _on_animation_player_animation_finished(anim_name):
 
 func collision_enemy(value:float = 10 ):
 	life -= value
+	gui.emit_signal("update_life_status", life)
 	if(life <= 0):
 		death_persont()
 	
