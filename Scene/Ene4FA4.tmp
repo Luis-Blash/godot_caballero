@@ -63,7 +63,3 @@ hframes = 11
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-5, 4)
 shape = SubResource("CapsuleShape2D_jbwly")
-
-[node name="FloorRayCast" type="RayCast2D" parent="."]
-position = Vector2(-4, 4)
-target_position = Vector2(0, 15)
