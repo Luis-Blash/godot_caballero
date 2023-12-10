@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://dralfoyh5ch7v"]
+
+[ext_resource type="Texture2D" uid="uid://c1xskpqp6i5e4" path="res://Assest/Enemys/Skeleton/Skeleton Idle.png" id="1_g1juj"]
+
+[sub_resource type="GDScript" id="GDScript_ef0u4"]
+resource_name = "res://Scripts/EnemySkeleton.gd"
+script/source = "extends CharacterBody2D
+
+@onready var _animation_player = $AnimationPlayer
+@export var mass : float = 4
+
+
+func _ready():
+	print(\"Skeleton\")
+	pass # Replace with function body.
+
+func _physics_process(delta):
+	motion_ctrl()
+	select_animation()
+	move_and_slide()
+
+func motion_ctrl() -> void: 
+	velocity.y += Global.get_gravity_character(1, mass)
+
+func select_animation():	
+	_animation_player.play(\"idle_skeleton\")
+
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tygoq"]
+radius = 5.0
+height = 28.0
+
+[sub_resource type="Animation" id="Animation_xgk1h"]
+resource_name = "idle_skeleton"
+length = 1.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0), Vector2i(6, 0), Vector2i(7, 0), Vector2i(8, 0), Vector2i(9, 0), Vector2i(10, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_22vml"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tapn3"]
+_data = {
+"RESET": SubResource("Animation_22vml"),
+"idle_skeleton": SubResource("Animation_xgk1h")
+}
+
+[node name="EnemySkeleton" type="CharacterBody2D"]
+script = SubResource("GDScript_ef0u4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 3)
+shape = SubResource("CapsuleShape2D_tygoq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_g1juj")
+hframes = 11
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_tapn3")
+}

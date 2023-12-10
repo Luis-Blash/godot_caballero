@@ -6,8 +6,8 @@ extends CharacterBody2D
 @onready var _wallRaycast = $WallRayCast
 @onready var _floorRaycast = $FloorRayCast
 
-@export var speed : float = 200
 @export var mass : float = 3
+@export var speed : float = 200
 var is_jumping: bool = false
 @export var jump_speed: float = 400
 
