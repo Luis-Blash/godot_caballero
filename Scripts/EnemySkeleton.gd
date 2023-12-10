@@ -30,4 +30,4 @@ func get_collision_floor() -> bool:
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Player"):
-		body.collision_enemy()
+		body.collision_enemy(5)

@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var _wallRaycast = $WallRayCast
 @onready var _floorRaycast = $FloorRayCast
 
-@export var mass : float = 3
+var mass : float = 3
 @export var speed : float = 200
 var is_jumping: bool = false
 @export var jump_speed: float = 400
@@ -17,6 +17,8 @@ var right_key = false
 var attack_key = false
 
 var select_animation_attack = 0
+
+@export var life:float = 100 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -126,5 +128,10 @@ func _on_animation_player_animation_finished(anim_name):
 		else:
 			select_animation_attack = 0
 
-func collision_enemy():
-	print("collisiono con un enemigo")
+func collision_enemy(value:float = 10 ):
+	life -= value
+	if(life <= 0):
+		death_persont()
+	
+func death_persont():
+	print('death')
