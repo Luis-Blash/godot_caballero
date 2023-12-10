@@ -26,3 +26,8 @@ func select_animation():
 
 func get_collision_floor() -> bool:
 	return _floorRaycast.is_colliding()
+
+
+func _on_area_2d_body_entered(body):
+	if body.is_in_group("Player"):
+		body.collision_enemy()

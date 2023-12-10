@@ -67,3 +67,5 @@ shape = SubResource("CapsuleShape2D_jbwly")
 [node name="FloorRayCast" type="RayCast2D" parent="."]
 position = Vector2(-4, 4)
 target_position = Vector2(0, 15)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

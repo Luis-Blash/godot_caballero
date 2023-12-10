@@ -125,3 +125,6 @@ func _on_animation_player_animation_finished(anim_name):
 			select_animation_attack = 1
 		else:
 			select_animation_attack = 0
+
+func collision_enemy():
+	print("collisiono con un enemigo")
