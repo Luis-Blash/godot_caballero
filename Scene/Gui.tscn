@@ -13,16 +13,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
-layout_mode = 2
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
 offset_right = 53.0
-offset_bottom = 40.0
+offset_bottom = 23.0
 
-[node name="L_vida" type="Label" parent="Control/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="L_vida" type="Label" parent="Control/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "Vida:"
 
-[node name="P_vida" type="Label" parent="Control/HBoxContainer"]
+[node name="P_vida" type="Label" parent="Control/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "0"
 

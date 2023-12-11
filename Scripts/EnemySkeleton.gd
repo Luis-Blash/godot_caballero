@@ -6,6 +6,8 @@ extends Node2D
 @export var mass : float = 0.6
 var velocity : Vector2 = Vector2.ZERO
 
+@export var life:float = 100
+
 
 func _ready():
 	print("Skeleton")
@@ -27,7 +29,9 @@ func select_animation():
 func get_collision_floor() -> bool:
 	return _floorRaycast.is_colliding()
 
-
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Player"):
 		body.collision_enemy(20)
+
+func on_recive_attack(value:float = 0):
+	life -= value

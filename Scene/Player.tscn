@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://edjejs6q6t8w"]
+[gd_scene load_steps=12 format=3 uid="uid://edjejs6q6t8w"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_fyx5u"]
 [ext_resource type="Texture2D" uid="uid://beet5fpehq11f" path="res://Assest/Player/Caballero_sheet.png" id="2_lg1kv"]
@@ -113,6 +113,9 @@ _data = {
 radius = 7.0
 height = 36.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lmdgu"]
+size = Vector2(25, 30)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(61, 80)
 up_direction = Vector2(0.140049, -0.990145)
@@ -147,5 +150,13 @@ position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
+[node name="AreaAttack" type="Area2D" parent="."]
+
+[node name="Attack" type="CollisionShape2D" parent="AreaAttack"]
+position = Vector2(28.5, 21)
+shape = SubResource("RectangleShape2D_lmdgu")
+disabled = true
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
+[connection signal="area_entered" from="AreaAttack" to="." method="_on_area_attack_area_entered"]

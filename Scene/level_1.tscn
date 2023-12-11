@@ -41,9 +41,9 @@ layer_1/name = "Layer1"
 layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array()
 
+[node name="EnemySkeleton" parent="." instance=ExtResource("6_tpepk")]
+position = Vector2(148, 89)
+
 [node name="Player" parent="." instance=ExtResource("5_0cht6")]
 position = Vector2(61, 83)
 up_direction = Vector2(0.140049, -0.990145)
-
-[node name="EnemySkeleton" parent="." instance=ExtResource("6_tpepk")]
-position = Vector2(148, 89)

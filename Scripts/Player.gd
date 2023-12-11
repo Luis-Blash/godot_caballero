@@ -6,6 +6,9 @@ extends CharacterBody2D
 @onready var _wallRaycast = $WallRayCast
 @onready var _floorRaycast = $FloorRayCast
 
+# colision de ataque
+@onready var collision_attack_one = $AreaAttack/Attack
+
 var mass : float = 3
 @export var speed : float = 200
 var is_jumping: bool = false
@@ -19,14 +22,13 @@ var attack_key = false
 var select_animation_attack = 0
 
 @export var life:float = 100 
-
+@export var attack_power:float = 10 
 # instance another
-@onready var gui = $"../Gui"
+#@onready var gui = $"../Gui"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("Player")
-	gui.emit_signal("update_life_status", life)
 	pass # Replace with function body.
 
 func _process(_delta):
@@ -96,6 +98,11 @@ func select_animation():
 				_animation_player.play("attack_two")
 		else:
 			_animation_player.play("idle_player")
+	
+	if attack_key:
+		collision_attack_one.disabled = false
+	else:
+		collision_attack_one.disabled = true
 		
 	if left_key:
 		_sprite_player.flip_h = true
@@ -103,6 +110,7 @@ func select_animation():
 		_wallRaycast.transform[2] = Vector2(5,22)
 		_wallRaycast.target_position = Vector2(-10,0)
 		_floorRaycast.transform[2] = Vector2(5,22)
+		collision_attack_one.transform[2] = Vector2(-28.5, 21)
 	
 	if right_key:
 		_sprite_player.flip_h = false
@@ -110,6 +118,7 @@ func select_animation():
 		_wallRaycast.transform[2] = Vector2(-5,22)
 		_wallRaycast.target_position = Vector2(10,0)
 		_floorRaycast.transform[2] = Vector2(-5,22)
+		collision_attack_one.transform[2] = Vector2(28.5, 21)
 		
 
 func get_collision_wall() -> bool:
@@ -126,6 +135,7 @@ func _on_animation_player_animation_started(anim_name):
 
 func _on_animation_player_animation_finished(anim_name):
 	if(anim_name == "attack_one" || anim_name == "attack_two"):
+		collision_attack_one.disabled = true
 		attack_key = false
 		if anim_name == "attack_one":
 			select_animation_attack = 1
@@ -134,9 +144,14 @@ func _on_animation_player_animation_finished(anim_name):
 
 func collision_enemy(value:float = 10 ):
 	life -= value
-	gui.emit_signal("update_life_status", life)
+	#gui.emit_signal("update_life_status", life)
 	if(life <= 0):
 		death_persont()
 	
 func death_persont():
 	print('death')
+
+func _on_area_attack_area_entered(area):
+	if (area.is_in_group("EnemyArea")):
+		var enemy = area.get_parent()
+		enemy.on_recive_attack(attack_power)
