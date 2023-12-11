@@ -24,11 +24,12 @@ var select_animation_attack = 0
 @export var life:float = 100 
 @export var attack_power:float = 10 
 # instance another
-#@onready var gui = $"../Gui"
+@onready var gui = $"../Gui"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("Player")
+	signal_custom("life_update",life)
 	pass # Replace with function body.
 
 func _process(_delta):
@@ -144,7 +145,7 @@ func _on_animation_player_animation_finished(anim_name):
 
 func collision_enemy(value:float = 10 ):
 	life -= value
-	#gui.emit_signal("update_life_status", life)
+	signal_custom("life_update",life)
 	if(life <= 0):
 		death_persont()
 	
@@ -155,3 +156,11 @@ func _on_area_attack_area_entered(area):
 	if (area.is_in_group("EnemyArea")):
 		var enemy = area.get_parent()
 		enemy.on_recive_attack(attack_power)
+
+func signal_custom(value: String, data):
+	match value:
+		"life_update":
+			gui.emit_signal("update_life", data)
+		_:
+			print('No hay')
+
