@@ -165,6 +165,7 @@ func collision_enemy(value:float = 10 ):
 	is_receives_damage = true
 	timer_damage.wait_time = 0.40
 	timer_damage.start()
+	_sprite_player.modulate = "#c22d26"
 		
 	if(life <= 0):
 		death_persont()
@@ -193,5 +194,5 @@ func signal_custom(value: String, data):
 			print('No hay')
 
 func _on_timer_damage_timeout():
-	print("acabo timer")
+	_sprite_player.modulate = "#ffffff"
 	is_receives_damage = false
