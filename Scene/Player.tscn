@@ -157,6 +157,9 @@ position = Vector2(28.5, 21)
 shape = SubResource("RectangleShape2D_lmdgu")
 disabled = true
 
+[node name="TimerDamage" type="Timer" parent="."]
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
 [connection signal="area_entered" from="AreaAttack" to="." method="_on_area_attack_area_entered"]
+[connection signal="timeout" from="TimerDamage" to="." method="_on_timer_damage_timeout"]

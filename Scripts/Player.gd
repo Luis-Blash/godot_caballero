@@ -9,20 +9,29 @@ extends CharacterBody2D
 # colision de ataque
 @onready var collision_attack_one = $AreaAttack/Attack
 
+# salto y gravedad
 var mass : float = 3
 @export var speed : float = 200
 var is_jumping: bool = false
 @export var jump_speed: float = 400
 
+# botones click
 var jump_key = false
 var left_key = false
 var right_key = false
 var attack_key = false
 
+# selecion de animacion de ataque
 var select_animation_attack = 0
 
+# vida y ataque
 @export var life:float = 100 
 @export var attack_power:float = 10 
+
+#recibir ataque
+var is_receives_damage: bool = false
+@onready var timer_damage = $TimerDamage
+
 # instance another
 @onready var gui = $"../Gui"
 
@@ -63,15 +72,17 @@ func keys_press():
 
 
 func motion_ctrl() -> void: 
-	
 	if get_collision_floor():
-		velocity = Vector2.ZERO
+		if is_receives_damage:
+			on_recive_damage()
+		else:
+			velocity = Vector2.ZERO
 	
-	if !get_collision_wall() && !attack_key:
+	if !get_collision_wall() && !attack_key && !is_receives_damage:
 		velocity.x = Global.get_axis().x * speed
 	
 	# si esta tocando el suelo puedes saltar
-	if get_collision_floor() && jump_key && !attack_key:
+	if get_collision_floor() && jump_key && !attack_key && !is_receives_damage:
 		if !get_collision_wall():
 			velocity.y = -jump_speed
 			is_jumping = true
@@ -85,7 +96,10 @@ func motion_ctrl() -> void:
 		
 	
 func select_animation():	
-	
+	if is_receives_damage:
+		_animation_player.play("Jump_player")
+		return
+		
 	if ((left_key || right_key) && get_collision_floor() && !attack_key):
 		_animation_player.play("run_player")
 		# ataque
@@ -144,11 +158,25 @@ func _on_animation_player_animation_finished(anim_name):
 			select_animation_attack = 0
 
 func collision_enemy(value:float = 10 ):
-	life -= value
-	signal_custom("life_update",life)
+	if !is_receives_damage:
+		life -= value
+		signal_custom("life_update",life)
+	
+	is_receives_damage = true
+	timer_damage.wait_time = 0.40
+	timer_damage.start()
+		
 	if(life <= 0):
 		death_persont()
-	
+
+func on_recive_damage():
+	if _sprite_player.flip_h:
+		velocity.x = 1 * speed / 2
+		velocity.y = -jump_speed
+	else: 
+		velocity.x = -1 * speed / 2
+		velocity.y = -jump_speed
+
 func death_persont():
 	print('death')
 
@@ -164,3 +192,6 @@ func signal_custom(value: String, data):
 		_:
 			print('No hay')
 
+func _on_timer_damage_timeout():
+	print("acabo timer")
+	is_receives_damage = false
